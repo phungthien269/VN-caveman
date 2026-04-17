@@ -1,24 +1,38 @@
 # VNcaveman
 
-`VNcaveman` là repo tiếng Việt-first cho bộ skill nén phản hồi `gon`: ngắn hơn, sắc hơn, ít token hơn, nhưng vẫn giữ nguyên ý kỹ thuật.
+Vietnamese-first AI skill repo for coding agents. Cut filler, cut hedging, cut token waste. Keep technical accuracy.
 
-Repo này lấy cảm hứng từ [caveman](https://github.com/JuliusBrussee/caveman), nhưng không giữ persona "người tối cổ". `gon` ưu tiên tiếng Việt tự nhiên cho dev workflow: bỏ xã giao, bỏ hedge, rút câu, giữ nguyên code/lệnh/log/path, và tự tăng clarity khi task có rủi ro.
+`VNcaveman` ships a concise-response skill set centered on `gon`: shorter Vietnamese answers for debugging, code review, commit writing, and docs compression without breaking code, commands, logs, paths, or warnings.
 
-## Bạn sẽ có gì
+Repo này lấy cảm hứng từ [caveman](https://github.com/JuliusBrussee/caveman), nhưng không giữ persona "người tối cổ". Mục tiêu là câu trả lời ngắn hơn, tự nhiên hơn với dev Việt, và vẫn đủ sắc để dùng trong workflow thật.
+
+## Why it exists
+
+Prompt terse kiểu tiếng Anh thường rút theo telegraph English. Cách đó không map thẳng sang tiếng Việt.
+
+`VNcaveman` xử lý bài toán đúng hơn cho tiếng Việt:
+
+- bỏ xã giao dư
+- bỏ hedge và đệm lời
+- rút cấu trúc dài dòng
+- giữ nguyên artifact kỹ thuật
+- tự tăng clarity khi đụng destructive ops, prod, security, migration
+
+## What you get
 
 | Surface | Có gì |
 |---|---|
-| Skill chính | `gon` với 3 level `lite`, `full`, `ultra` |
-| Skill phụ | `gon-commit`, `gon-review`, `gon-compress`, `gon-help` |
+| Main skill | `gon` với `lite`, `full`, `ultra` |
+| Sub-skills | `gon-commit`, `gon-review`, `gon-compress`, `gon-help` |
 | Hooks | Claude Code hooks + statusline |
 | Rules | Cline, Copilot, Cursor, Windsurf |
 | Plugin surfaces | Codex plugin, Claude plugin, Gemini extension metadata |
-| Docs nội bộ | `PROJECT_OVERVIEW.md`, `DECISIONS.md`, `PROGRESS.md`, `ROADMAP.md`, `CLAUDE.md` |
-| Benchmark/eval | script benchmark, eval harness, regression checklist |
+| Runtime tooling | `gon-compress`, benchmark runner, eval harness |
+| Docs | spec, examples, roadmap, decisions, progress |
 
 ## Before / After
 
-### Giải thích bug React
+### React bug explanation
 
 Before:
 
@@ -28,7 +42,7 @@ After (`full`):
 
 > Re-render do mỗi render tạo object mới. Prop object inline luôn ra ref mới. React thấy prop đổi. Dùng `useMemo`.
 
-### Giải thích bug backend
+### Backend auth bug
 
 Before:
 
@@ -38,7 +52,7 @@ After (`full`):
 
 > Lỗi ở auth middleware. Check expiry đang sai đơn vị. `exp` là giây, `Date.now()` là ms. So sánh lại với `exp * 1000`.
 
-### Warning khi lệnh nguy hiểm
+### Risky SQL warning
 
 Before:
 
@@ -53,14 +67,6 @@ After (auto-clarity):
 > DROP TABLE users;
 > ```
 
-## Khác gì repo gốc
-
-- Không dịch literal từ tiếng Anh sang tiếng Việt.
-- Không làm giọng hang động.
-- Không có `wenyan`; thay bằng 3 level hợp với tiếng Việt hơn.
-- Có bộ lexicon tiếng Việt rộng hơn để cắt xã giao, hedge, đệm lời, cụm quan liêu, câu chuyển ý thừa.
-- Giữ parity tinh thần với repo gốc ở hook/rules/plugin/eval/benchmark/compress surface, nhưng localization theo behavior chứ không bê nguyên wording.
-
 ## Levels
 
 | Level | Mục tiêu | Dùng khi | Tránh dùng khi |
@@ -69,20 +75,16 @@ After (auto-clarity):
 | `full` | Ngắn, trực diện, câu có thể cụt vừa phải | Debug, review, guidance kỹ thuật | Task rủi ro cao cần step-by-step |
 | `ultra` | Cực ngắn, shorthand dev | Chat kỹ thuật nội bộ, diff review nhanh | User mới, warning, migration, prod |
 
-Chi tiết nằm ở [docs/caveman-vi-spec.md](/E:/test/caveman/VNcaveman/docs/caveman-vi-spec.md).
-
-## Cài và dùng
+## Install / Use
 
 ### Claude Code hooks
-
-Repo có sẵn:
 
 - [hooks/install.sh](/E:/test/caveman/VNcaveman/hooks/install.sh)
 - [hooks/install.ps1](/E:/test/caveman/VNcaveman/hooks/install.ps1)
 - [hooks/uninstall.sh](/E:/test/caveman/VNcaveman/hooks/uninstall.sh)
 - [hooks/uninstall.ps1](/E:/test/caveman/VNcaveman/hooks/uninstall.ps1)
 
-Hook sẽ:
+Hook behavior:
 
 - bật `gon` khi session bắt đầu
 - theo dõi `/gon lite|full|ultra`
@@ -90,8 +92,6 @@ Hook sẽ:
 - hiện badge `[GON]` trên statusline
 
 ### Repo-local surfaces
-
-Repo có sẵn:
 
 - [AGENTS.md](/E:/test/caveman/VNcaveman/AGENTS.md)
 - [CLAUDE.md](/E:/test/caveman/VNcaveman/CLAUDE.md)
@@ -108,7 +108,7 @@ Repo có sẵn:
 - [skills/gon-compress/SKILL.md](/E:/test/caveman/VNcaveman/skills/gon-compress/SKILL.md)
 - [skills/gon-help/SKILL.md](/E:/test/caveman/VNcaveman/skills/gon-help/SKILL.md)
 
-Trigger gợi ý:
+Common triggers:
 
 - `gon mode`
 - `trả lời gọn`
@@ -118,7 +118,7 @@ Trigger gợi ý:
 - `/gon full`
 - `/gon ultra`
 
-Tắt:
+Disable:
 
 - `stop gon`
 - `normal mode`
@@ -126,7 +126,7 @@ Tắt:
 
 ## `gon-compress`
 
-`gon-compress` là sub-skill tương đương surface `caveman-compress` của repo gốc:
+`gon-compress` là sub-skill tương đương `caveman-compress` nhưng cho prose/docs tiếng Việt.
 
 - runtime scripts: [gon-compress/scripts/](/E:/test/caveman/VNcaveman/gon-compress/scripts)
 - synced surface cho generic `compress`: [skills/compress/](/E:/test/caveman/VNcaveman/skills/compress)
@@ -141,11 +141,9 @@ Nó:
 - retry fix tối đa 2 lần nếu validation fail
 - chặn path có dấu hiệu chứa secret/key
 
-## Benchmark và eval
+## Benchmark / Eval
 
 ### Benchmark
-
-Chạy benchmark qua Anthropic API:
 
 ```bash
 uv run python benchmarks/run.py --dry-run
@@ -169,35 +167,35 @@ Harness eval nằm ở [evals/](/E:/test/caveman/VNcaveman/evals). Nó đo:
 - `__terse__`
 - từng skill trong `skills/`
 
-Đọc snapshot:
-
 ```bash
 uv run --with tiktoken python evals/measure.py
-```
-
-Sinh snapshot mới cần `claude` CLI:
-
-```bash
 uv run python evals/llm_run.py
 ```
 
+## Market Readiness
+
+Nếu mục tiêu là tăng star thật và tăng khả năng được duyệt market, xem thêm:
+
+- [docs/market-readiness.md](/E:/test/caveman/VNcaveman/docs/market-readiness.md)
+- [docs/social-copy.md](/E:/test/caveman/VNcaveman/docs/social-copy.md)
+
 ## Repo structure
 
-- [PROJECT_OVERVIEW.md](/E:/test/caveman/VNcaveman/PROJECT_OVERVIEW.md): repo là gì, phạm vi gì.
-- [DECISIONS.md](/E:/test/caveman/VNcaveman/DECISIONS.md): quyết định kiến trúc và deviation.
-- [PROGRESS.md](/E:/test/caveman/VNcaveman/PROGRESS.md): trạng thái hiện tại và next steps.
-- [ROADMAP.md](/E:/test/caveman/VNcaveman/ROADMAP.md): phase tiếp theo.
-- [docs/caveman-vi-spec.md](/E:/test/caveman/VNcaveman/docs/caveman-vi-spec.md): spec đầy đủ.
-- [docs/localization-principles.md](/E:/test/caveman/VNcaveman/docs/localization-principles.md): nguyên tắc localization.
-- [docs/benchmark.md](/E:/test/caveman/VNcaveman/docs/benchmark.md): benchmark rubric và cách chạy.
-- [examples/](/E:/test/caveman/VNcaveman/examples): ví dụ before/after, commit, review.
-- [tests/](/E:/test/caveman/VNcaveman/tests): benchmark cases, regression checklist, verify scripts.
+- [PROJECT_OVERVIEW.md](/E:/test/caveman/VNcaveman/PROJECT_OVERVIEW.md)
+- [DECISIONS.md](/E:/test/caveman/VNcaveman/DECISIONS.md)
+- [PROGRESS.md](/E:/test/caveman/VNcaveman/PROGRESS.md)
+- [ROADMAP.md](/E:/test/caveman/VNcaveman/ROADMAP.md)
+- [docs/caveman-vi-spec.md](/E:/test/caveman/VNcaveman/docs/caveman-vi-spec.md)
+- [docs/localization-principles.md](/E:/test/caveman/VNcaveman/docs/localization-principles.md)
+- [docs/benchmark.md](/E:/test/caveman/VNcaveman/docs/benchmark.md)
+- [examples/](/E:/test/caveman/VNcaveman/examples)
+- [tests/](/E:/test/caveman/VNcaveman/tests)
 
 ## Caveats
 
-- Repo đã có parity runtime ở mức repo-local với source repo, nhưng chưa có URL publish chính thức cho marketplace/plugin manifests.
-- Snapshot eval hiện là stub nếu máy chưa có `claude` CLI.
-- `gon` tối ưu cho tiếng Việt kỹ thuật; không nhắm tới copywriting, sales, hay đối ngoại.
+- Repo đã có parity runtime ở mức repo-local với source repo, nhưng benchmark thật và eval snapshot thật còn phụ thuộc model access/CLI.
+- Skill/runtime chính hiện giữ tên `gon`; repo name là `VNcaveman`.
+- Plugin/manifests nên trỏ về URL public thật của repo.
 
 ## License
 

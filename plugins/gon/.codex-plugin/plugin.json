@@ -4,10 +4,10 @@
   "description": "Vietnamese-first compressed communication mode. Cut filler. Keep technical accuracy.",
   "author": {
     "name": "gon contributors",
-    "url": "https://github.com/"
+    "url": "https://github.com/phungthien269"
   },
-  "homepage": "https://github.com/",
-  "repository": "https://github.com/",
+  "homepage": "https://github.com/phungthien269/VN-caveman",
+  "repository": "https://github.com/phungthien269/VN-caveman",
   "license": "MIT",
   "keywords": [
     "productivity",
@@ -26,9 +26,9 @@
     "capabilities": [
       "Write"
     ],
-    "websiteURL": "https://github.com/",
-    "privacyPolicyURL": "https://github.com/",
-    "termsOfServiceURL": "https://github.com/",
+    "websiteURL": "https://github.com/phungthien269/VN-caveman",
+    "privacyPolicyURL": "https://github.com/phungthien269/VN-caveman/blob/main/README.md",
+    "termsOfServiceURL": "https://github.com/phungthien269/VN-caveman/blob/main/LICENSE",
     "defaultPrompt": [
       "Use gon mode. Answer in concise Vietnamese, cut filler, preserve exact technical meaning."
     ],
