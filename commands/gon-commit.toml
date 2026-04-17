@@ -1,0 +1,2 @@
+description = "Generate terse gon-style commit message"
+prompt = "Generate a terse commit message for the current staged changes. Conventional Commits format. Subject: <=50 chars when possible, imperative, no trailing period. Add body only when the why is not obvious, for breaking changes, migrations, or security context."

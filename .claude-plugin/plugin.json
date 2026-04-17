@@ -1,0 +1,34 @@
+{
+  "name": "gon",
+  "description": "Vietnamese-first compressed communication mode. Cut filler. Keep technical accuracy.",
+  "author": {
+    "name": "gon contributors",
+    "url": "https://github.com/"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/gon-activate.js\"",
+            "timeout": 5,
+            "statusMessage": "Loading gon mode..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/gon-mode-tracker.js\"",
+            "timeout": 5,
+            "statusMessage": "Tracking gon mode..."
+          }
+        ]
+      }
+    ]
+  }
+}

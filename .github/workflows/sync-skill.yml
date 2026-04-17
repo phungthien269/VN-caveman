@@ -1,0 +1,97 @@
+name: Sync GON skill surfaces
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - skills/gon/SKILL.md
+      - rules/gon-activate.md
+      - skills/gon-compress/SKILL.md
+      - gon-compress/scripts/**
+
+concurrency:
+  group: sync-gon
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Pull latest before making changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
+
+      - name: Sync skill copies
+        run: |
+          cp skills/gon/SKILL.md gon/SKILL.md
+          cp skills/gon/SKILL.md plugins/gon/skills/gon/SKILL.md
+          cp skills/gon/SKILL.md .cursor/skills/gon/SKILL.md
+          mkdir -p .windsurf/skills/gon
+          cp skills/gon/SKILL.md .windsurf/skills/gon/SKILL.md
+
+      - name: Sync compress skill
+        run: |
+          cp skills/gon-compress/SKILL.md gon-compress/SKILL.md
+          rm -rf skills/compress/scripts
+          cp skills/gon-compress/SKILL.md skills/compress/SKILL.md
+          sed -i 's/^name: gon-compress$/name: compress/' skills/compress/SKILL.md
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("skills/compress/SKILL.md")
+          text = path.read_text()
+          marker = "Nén prose/docs. Không phá code/config/data.\n"
+          addition = "\nSKILL này sống cạnh `scripts/`. Từ thư mục chứa SKILL này, chạy:\n\n`python3 -m scripts <absolute_filepath>`\n"
+          if addition.strip() not in text:
+              text = text.replace(marker, marker + addition)
+          path.write_text(text)
+          PY
+          cp -r gon-compress/scripts skills/compress/scripts
+          rm -rf skills/compress/scripts/__pycache__
+
+      - name: Sync compress skill to plugin
+        run: |
+          rm -rf plugins/gon/skills/compress/scripts
+          cp skills/compress/SKILL.md plugins/gon/skills/compress/SKILL.md
+          cp -r gon-compress/scripts plugins/gon/skills/compress/scripts
+          rm -rf plugins/gon/skills/compress/scripts/__pycache__
+
+      - name: Rebuild gon.skill ZIP
+        run: cd skills && zip -r ../gon.skill gon/
+
+      - name: Sync auto-activation rules
+        run: |
+          BODY="rules/gon-activate.md"
+          mkdir -p .clinerules .github .cursor/rules .windsurf/rules
+          cp "$BODY" .clinerules/gon.md
+          cp "$BODY" .github/copilot-instructions.md
+          printf '%s\n' '---' 'description: "Gon mode — Vietnamese-first terse communication with technical fidelity"' 'alwaysApply: true' '---' '' > .cursor/rules/gon.mdc
+          cat "$BODY" >> .cursor/rules/gon.mdc
+          printf '%s\n' '---' 'trigger: always_on' '---' '' > .windsurf/rules/gon.md
+          cat "$BODY" >> .windsurf/rules/gon.md
+
+      - name: Commit and push if changed
+        run: |
+          git add \
+            gon/SKILL.md \
+            gon-compress/ \
+            skills/compress/ \
+            plugins/gon/skills/compress/ \
+            plugins/gon/skills/gon/SKILL.md \
+            .cursor/skills/gon/SKILL.md \
+            .windsurf/skills/gon/SKILL.md \
+            gon.skill \
+            .clinerules/gon.md \
+            .github/copilot-instructions.md \
+            .cursor/rules/gon.mdc \
+            .windsurf/rules/gon.md
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: sync gon skill surfaces [skip ci]"
+          git push

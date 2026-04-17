@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "status": "not_generated",
+    "reason": "claude CLI unavailable when repo last updated",
+    "generated_at": null,
+    "claude_cli_version": "unavailable",
+    "model": "unavailable",
+    "n_prompts": 0,
+    "prompt_file": "evals/prompts/vi.txt",
+    "terse_prefix": "Answer concisely in Vietnamese."
+  },
+  "prompts": [],
+  "arms": {
+    "__baseline__": [],
+    "__terse__": []
+  }
+}

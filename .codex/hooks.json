@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'GON MODE ACTIVE. Tra loi tieng Viet gon, truc dien, bo xa giao, hedge, dem loi. Giu nguyen code, command, URL, path, env var, error, proper noun. Neu task nguy hiem, production, security, migration nhieu buoc: uu tien ro rang, canh bao day du, step-by-step. Tat bang stop gon hoac normal mode.'",
+            "timeout": 5,
+            "statusMessage": "Loading gon mode"
+          }
+        ]
+      }
+    ]
+  }
+}

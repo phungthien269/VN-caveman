@@ -1,0 +1,2 @@
+description = "One-line code review comments in gon style"
+prompt = "Review the current code changes. One line per finding. Format: L<line>: <severity> <problem>. Fix: <action>. Severity: bug, risk, nit, q. Skip praise. Skip obvious restatement. If no findings, say LGTM."

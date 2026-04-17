@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "prompts": [
+    {
+      "id": "react-rerender",
+      "category": "debugging",
+      "prompt": "Component React của tôi re-render ở mọi lần update state dù props nhìn như không đổi. Tôi đang truyền một object inline qua prop. Giải thích nguyên nhân và cách sửa."
+    },
+    {
+      "id": "auth-middleware-fix",
+      "category": "bugfix",
+      "prompt": "Middleware auth Express đang cho JWT hết hạn đi qua. Tôi so sánh `Date.now()` với field `exp` trong token. Sai ở đâu và sửa thế nào?"
+    },
+    {
+      "id": "postgres-pool",
+      "category": "setup",
+      "prompt": "Cách setup PostgreSQL connection pool trong Node.js với timeout, retry, và error handling hợp lý?"
+    },
+    {
+      "id": "git-rebase-merge",
+      "category": "explanation",
+      "prompt": "Phân biệt `git rebase` và `git merge`. Khi nào nên dùng mỗi cái và tradeoff chính là gì?"
+    },
+    {
+      "id": "async-refactor",
+      "category": "refactor",
+      "prompt": "Refactor hàm callback-based Node.js này sang `async/await`:\n\nfunction getUser(id, callback) {\n  db.query('SELECT * FROM users WHERE id = ?', [id], function(err, rows) {\n    if (err) return callback(err);\n    if (!rows.length) return callback(new Error('Not found'));\n    callback(null, rows[0]);\n  });\n}"
+    },
+    {
+      "id": "microservices-monolith",
+      "category": "architecture",
+      "prompt": "Team tôi có monolith Django đang chậm và đang bàn chuyện tách microservices. Những yếu tố nào cần cân nhắc trước khi tách?"
+    },
+    {
+      "id": "pr-security-review",
+      "category": "code-review",
+      "prompt": "Review route Express này dưới góc nhìn security:\n\napp.get('/api/users/:id', (req, res) => {\n  const query = `SELECT * FROM users WHERE id = ${req.params.id}`;\n  db.query(query).then(user => res.json(user));\n});"
+    },
+    {
+      "id": "docker-multi-stage",
+      "category": "devops",
+      "prompt": "Viết multi-stage Dockerfile cho app Node.js TypeScript, dùng npm, cần compile TypeScript trước khi chạy, và tối ưu kích thước image cuối."
+    },
+    {
+      "id": "race-condition-debug",
+      "category": "debugging",
+      "prompt": "API Node.js của tôi tăng counter trong PostgreSQL nhưng request concurrent thỉnh thoảng trả cùng một giá trị. Fix race condition này thế nào?"
+    },
+    {
+      "id": "error-boundary",
+      "category": "implementation",
+      "prompt": "Implement React error boundary bắt lỗi render, hiện fallback UI có nút retry, và log chi tiết lỗi."
+    }
+  ]
+}

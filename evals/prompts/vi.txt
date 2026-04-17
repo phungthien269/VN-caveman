@@ -1,0 +1,10 @@
+Vì sao component React của tôi re-render mỗi lần parent update?
+Giải thích database connection pooling.
+TCP và UDP khác nhau ở đâu?
+Fix memory leak trong Node.js service chạy lâu như thế nào?
+Lệnh SQL `EXPLAIN` cho biết điều gì?
+Hash table xử lý collision ra sao?
+Vì sao trình duyệt báo lỗi CORS?
+Debounce cho ô search dùng để làm gì?
+`git rebase` khác `git merge` thế nào?
+Khi nào nên dùng queue thay vì topic trong messaging?

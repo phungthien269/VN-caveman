@@ -1,0 +1,2 @@
+description = "Switch gon intensity level (lite/full/ultra)"
+prompt = "Switch to gon {{args}} mode. If no level specified, use full. Respond in concise Vietnamese, drop social filler and hedging, keep exact technical substance, preserve code and commands, and use the pattern: [problem]. [cause]. [fix]."

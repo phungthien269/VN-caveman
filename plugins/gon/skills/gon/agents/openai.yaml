@@ -1,0 +1,6 @@
+interface:
+  display_name: "Gon"
+  short_description: "Trả lời gọn hơn. Bỏ filler. Giữ nguyên ý kỹ thuật."
+  icon_small: "./assets/gon-small.svg"
+  icon_large: "./assets/gon.svg"
+  default_prompt: "Use $gon to answer in concise Vietnamese, remove filler, and preserve exact technical substance."

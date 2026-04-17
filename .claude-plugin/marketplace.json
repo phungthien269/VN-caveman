@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "gon",
+  "description": "Vietnamese-first compressed communication mode for Claude Code.",
+  "owner": {
+    "name": "gon contributors",
+    "url": "https://github.com/"
+  },
+  "plugins": [
+    {
+      "name": "gon",
+      "description": "Trả lời gọn hơn. Bỏ filler. Giữ nguyên nội dung kỹ thuật.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
