@@ -2,21 +2,17 @@
 
 [![EN](https://img.shields.io/badge/README-EN-2563eb?style=for-the-badge)](./README.en.md)
 
-`VNcaveman` là repo tiếng Việt-first cho bộ skill nén phản hồi `gon`: ngắn hơn, sắc hơn, ít token hơn, nhưng vẫn giữ nguyên ý kỹ thuật.
+`VNcaveman` là repo Vietnamese-first cho bộ skill nén phản hồi `gon`: ngắn hơn, sắc hơn, ít token hơn, nhưng vẫn giữ nguyên ý kỹ thuật.
 
 Repo này lấy cảm hứng từ [caveman](https://github.com/JuliusBrussee/caveman), nhưng không giữ persona "người tối cổ". Mục tiêu là câu trả lời ngắn hơn, tự nhiên hơn với dev Việt, và vẫn đủ sắc để dùng trong workflow thật.
 
-## Vì sao repo này tồn tại
+`gon` tối ưu token bằng cách xử lý cả input lẫn output text:
 
-Prompt terse kiểu tiếng Anh thường rút theo telegraph English. Cách đó không map thẳng sang tiếng Việt.
-
-`VNcaveman` xử lý bài toán đúng hơn cho tiếng Việt:
-
-- bỏ xã giao dư
-- bỏ hedge và đệm lời
-- rút cấu trúc dài dòng
-- giữ nguyên artifact kỹ thuật
-- tự tăng clarity khi đụng destructive ops, prod, security, migration
+- chuẩn hóa intent từ prompt kiểu verbose sang chỉ thị ngắn, rõ, dev-like
+- cắt xã giao, hedge, đệm lời và các cấu trúc dài dòng không thêm ý
+- giữ nguyên code, command, URL, path, log, warning và proper noun
+- nén phần prose mạnh hơn, nhưng tự tăng clarity khi task có rủi ro cao
+- ưu tiên ratio `ít token hơn / không mất nghĩa` thay vì rút câu một cách máy móc
 
 ## Bạn sẽ có gì
 
